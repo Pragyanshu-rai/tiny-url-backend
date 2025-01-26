@@ -42,3 +42,5 @@ build/
 /data
 /cache
 
+### docker compose used for starting up the env
+docker-compose.yaml
