@@ -40,7 +40,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(UrlNotFoundException.class)
     public ResponseEntity<MessageRunnerDTO> handleUrlNotFoundException(UrlNotFoundException urlNotFoundException) {
         logError(urlNotFoundException);
-        return new ResponseEntity<MessageRunnerDTO>(new MessageRunnerDTO(urlNotFoundException.getMessage()), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<MessageRunnerDTO>(new MessaeRunnerDTO(urlNotFoundException.getMessage()), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(EntryAlreadyExistsException.class)
