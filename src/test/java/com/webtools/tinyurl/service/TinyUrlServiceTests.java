@@ -30,7 +30,7 @@ public class TinyUrlServiceTests {
 
     @Test
     public void testThatFetchOriginalUrlReturnsTinyUrlObject() {
-        when(tinyUrlRepository.findById(tinyUrl.getShortUrlKey())).thenReturn(Optional.of(tinyUrl));
+        when(tinyUrlRepository.findActiveTinyUrlObjectById(tinyUrl.getShortUrlKey())).thenReturn(Optional.of(tinyUrl));
 
         try {
             TinyUrl fetchedTinyUrl = tinyUrlService.fetchOriginalUrl(tinyUrl.getShortUrlKey());

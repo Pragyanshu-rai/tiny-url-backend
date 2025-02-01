@@ -1,31 +1,35 @@
+#Application Environment Properties
 environmentContext:
-  shortUrlKeyName: tinyurl
+  inDevMode: ${IN_DEV}
   originalUrlName: url
-  inDevMode: true
+  shortUrlKeyName: tinyurl
 
+#Server Properties
 server:
-  port: 8081
+  port: ${APPLICATION_PORT}
+  address: ${APPLICATION_HOST}
 
+#Application Properties
 spring:
   application:
     name: tinyurl
+  cache:
+    type: redis
+  config:
+    import: optional:file:dev.env[.properties]
   datasource:
     username: ${POSTGRES_HOST_USER}
     password: ${POSTGRES_HOST_PASSWORD}
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:1111/postgres
+    url: jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/postgres
   jpa:
     hibernate:
       ddl-auto: update
-  config:
-    import: optional:file:dev.env[.properties]
   redis:
-    user: default
-    host: localhost
-    port: 1112
-    password: ${REDIS_HOST_PASSWORD}
-    timeout: 2000ms
     ssl: false
-  cache:
-    type: redis
+    user: ${REDIS_HOST_USER}
+    timeout: 2000ms
+    host: ${REDIS_HOST}
+    port: ${REDIS_PORT}
+    password: ${REDIS_HOST_PASSWORD}
 #   url: "redis://user:tinyurl@cache123@localhost:1112"
