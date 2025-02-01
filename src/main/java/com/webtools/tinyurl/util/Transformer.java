@@ -22,8 +22,8 @@ public class Transformer {
         }
         byte[] encodedBytes = hashAlgo.digest(target.getBytes(StandardCharsets.UTF_8));
 
-        for(int current = 0; current < encodedBytes.length; current++) {
-            code.append(Integer.toString(encodedBytes[current] & 0xff + 0x100, 16).substring(1));
+        for (byte encodedByte : encodedBytes) {
+            code.append(Integer.toString(encodedByte & 0xff + 0x100, 16).substring(1));
         }
         return shortenHash(code.toString(), (shouldBeShort ? 12 : code.length()));
     }

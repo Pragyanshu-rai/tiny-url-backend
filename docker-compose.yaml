@@ -11,6 +11,8 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_HOST_PASSWORD}
     volumes:
       - ./data:/var/lib/postgresql/data
+    networks:
+      - db_bridge
   cache:
     image: redis
     restart: always
@@ -19,9 +21,15 @@ services:
       - "1112:6379"
     volumes:
       - ./cache:/var/lib/redis/data
+    networks:
+      - db_bridge
 
 volumes:
   cache:
     driver: local
   data:
     driver: local
+
+networks:
+  db_bridge:
+    external: true
